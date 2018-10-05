@@ -1,0 +1,113 @@
+package com.dj.magatzem.objectes;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+import com.dj.magatzem.objectes.utils.Logger;
+
+public class Comanda {
+	
+	public static final int ESTAT_CREADA=0, ESTAT_PREPARADA=1, ESTAT_ENVIADA=2, ESTAT_ENTREGADA=3;	
+	private static final int DIES_ENTREGA_PER_DEFECTE=15;
+	private static final DateTimeFormatter DEFAULT_FORMATTER= DateTimeFormatter.
+			ofPattern("dd:MM:yy HH:mm");
+		
+	private static int nextId; 
+	private final int id;
+	private int estat;
+	private Item[] items;
+	private LocalDateTime creada;
+	private LocalDateTime preparada;
+	private LocalDateTime enviada;
+	private LocalDate prevista;
+	private LocalDateTime entregada;
+
+	public Comanda(Item[] items) {
+		estat=ESTAT_CREADA;
+		
+		this.items= new Item[items.length];
+		for (int i=0;i<items.length;i++) {
+			this.items[i] = items[i];
+		}
+		
+		creada= LocalDateTime.now();
+		prevista=creada.plusDays(DIES_ENTREGA_PER_DEFECTE).toLocalDate();
+		id=++nextId;
+	}
+	
+	public void comandaPreparada() {
+		estat=ESTAT_PREPARADA;
+		preparada=LocalDateTime.now();
+		Logger.getInstance().debug("MAIL: La comanda "+id+" ha estat preparada a data "+preparada.format(DEFAULT_FORMATTER)); 
+
+	}
+	
+	public void comandaEnviada() {
+		estat=ESTAT_ENVIADA;
+		enviada=LocalDateTime.now();
+		Logger.getInstance().debug("MAIL: La comanda "+id+" ha estat enviada a data "+enviada.format(DEFAULT_FORMATTER)); 
+
+	}
+	
+	public void comandaEntregada() {
+		estat=ESTAT_ENTREGADA;
+		entregada=LocalDateTime.now();
+		if(prevista.compareTo(entregada.toLocalDate())<0) {
+			Logger.getInstance().error("La comanda "+id+" s'ha entregat tard.");
+		}
+		Logger.getInstance().debug("MAIL: La comanda "+id+" ha estat entregada a data "+entregada.format(DEFAULT_FORMATTER));
+	}
+
+
+	public LocalDateTime getCreada() {
+		return creada;
+	}
+
+	public LocalDateTime getPreparada() {
+		return preparada;
+	}
+
+	public LocalDateTime getEnviada() {
+		return enviada;
+	}
+
+	public LocalDate getPrevista() {
+		return prevista;
+	}
+
+	public LocalDateTime getEntregada() {
+		return entregada;
+	}
+
+	public int getEstat() {
+		return estat;
+	}
+
+	public Item[] getItems() {
+		return items;
+	}
+
+	public int getId() {
+		return id;
+	}
+	
+	public static void main(String args[]) {
+		
+		new Comanda(new Item[] {});
+		new Comanda(new Item[] {});
+		new Comanda(new Item[] {});
+		new Comanda(new Item[] {});
+		
+		
+		Comanda c=new Comanda(new Item[] {});
+		
+		c.comandaPreparada();
+		c.comandaEnviada();
+		c.prevista=c.prevista.minusDays(15);
+		c.comandaEntregada();
+		
+		
+	}
+	
+}
