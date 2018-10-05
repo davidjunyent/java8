@@ -3,6 +3,7 @@ package com.dj.magatzem.objectes;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 import com.dj.magatzem.objectes.utils.Logger;
 
@@ -16,21 +17,16 @@ public class Comanda {
 	private static int nextId; 
 	private final int id;
 	private int estat;
-	private Item[] items;
+	private ArrayList<Item> items;
 	private LocalDateTime creada;
 	private LocalDateTime preparada;
 	private LocalDateTime enviada;
 	private LocalDate prevista;
 	private LocalDateTime entregada;
 
-	public Comanda(Item[] items) {
+	public Comanda(ArrayList<Item> items) {
 		estat=ESTAT_CREADA;
-		
-		this.items= new Item[items.length];
-		for (int i=0;i<items.length;i++) {
-			this.items[i] = items[i];
-		}
-		
+		this.items= new ArrayList<Item>(items);
 		creada= LocalDateTime.now();
 		prevista=creada.plusDays(DIES_ENTREGA_PER_DEFECTE).toLocalDate();
 		id=++nextId;
@@ -84,30 +80,12 @@ public class Comanda {
 		return estat;
 	}
 
-	public Item[] getItems() {
+	public ArrayList<Item> getItems() {
 		return items;
 	}
 
 	public int getId() {
 		return id;
 	}
-	
-	public static void main(String args[]) {
-		
-		new Comanda(new Item[] {});
-		new Comanda(new Item[] {});
-		new Comanda(new Item[] {});
-		new Comanda(new Item[] {});
-		
-		
-		Comanda c=new Comanda(new Item[] {});
-		
-		c.comandaPreparada();
-		c.comandaEnviada();
-		c.prevista=c.prevista.minusDays(15);
-		c.comandaEntregada();
-		
-		
-	}
-	
+
 }

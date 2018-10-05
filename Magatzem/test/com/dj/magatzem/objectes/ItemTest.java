@@ -2,10 +2,14 @@ package com.dj.magatzem.objectes;
 
 import com.dj.magatzem.objectes.Item;
 import com.dj.magatzem.objectes.utils.Logger;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+
+import java.util.ArrayList;
+
 import org.junit.Before;
 import org.junit.BeforeClass;
 
@@ -61,7 +65,10 @@ public class ItemTest {
     public void testGetNumberOfManuals() {
         Logger.getInstance().debug("getNumberOfManuals");
         Item instance = Item.createItem("Item 1",1);
-        instance.setManuals(new String[]{"M1","M2"});
+        
+        instance.setManuals(new ArrayList<>());
+        instance.getManuals().add("M1");
+        instance.getManuals().add("M2");
         int expResult = 2;
         int result = instance.getNumberOfManuals();
         assertEquals(expResult, result);
@@ -77,7 +84,10 @@ public class ItemTest {
         result = instance.getNumberOfManuals();
         assertEquals(expResult, result);
         
-        instance.setManuals(new String[3]);
+        instance.setManuals(new ArrayList<>());
+        instance.getManuals().add("M1");
+        instance.getManuals().add("M2");
+        instance.getManuals().add("M3");
         expResult = 3;
         result = instance.getNumberOfManuals();
         assertEquals(expResult, result);
@@ -91,28 +101,17 @@ public class ItemTest {
         Item instance = Item.createItem("Item 1",1);
         
         instance.addManual(manual);
-        assertNotNull(instance.getManuals()[0]);
+        assertNotNull(instance.getManuals().get(0));
         
         instance.addManual(manual);
         instance.addManual("ManualTestToAdd");
         instance.addManual(manual);
         instance.addManual(manual);
         
-        assertNotNull(instance.getManuals()[4]);
+        assertNotNull(instance.getManuals().get(0));
         
         instance.addManual(manual);
         
-        
-        instance.getManuals()[3]=null;
-        instance.addManual(manual);
-        instance.getManuals()[3]=null;
-        instance.addManual(manual);
-        instance.getManuals()[3]=null;
-        instance.addManual(manual);
-        
-        if(instance.getManuals().length!=6){
-            fail("No aprofita nulls");
-        }
         
         boolean found=false;
         for(String currentManual:instance.getManuals()){

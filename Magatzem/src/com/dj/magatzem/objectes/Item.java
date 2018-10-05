@@ -1,5 +1,8 @@
 package com.dj.magatzem.objectes;
 
+import java.util.ArrayList;
+
+import com.dj.magatzem.objectes.utils.Logger;
 
 public class Item {
 
@@ -7,7 +10,7 @@ public class Item {
     private double price;
     private int quantity;
     private Estanteria location;
-    private String[] manuals;
+    private ArrayList<String> manuals = new ArrayList<>();
     boolean promoted;
     
     private Proveidor proveidor;
@@ -95,11 +98,11 @@ public class Item {
         this.location = location;
     }
 
-    public String[] getManuals() {
+    public ArrayList<String> getManuals() {
         return manuals;
     }
 
-    public void setManuals(String[] manuals) {
+    public void setManuals(ArrayList<String> manuals) {
         this.manuals = manuals;
     }
 
@@ -123,33 +126,26 @@ public class Item {
         return quantity<=0;
     }
     public int getNumberOfManuals(){
-        return manuals!=null?manuals.length:0;
+        return manuals!=null?manuals.size():0;
     }
     public void addManual(String manual){
         if(manual==null) return;
-         
-        if(manuals==null){ 
-            //que estigui inicialitzat
-            manuals = new String[]{manual};
-            return;
-        }else{
-            //comprovem que no tinguem una posicio a null
-            for(int i=0;i<manuals.length; i++){
-                if(manuals[i]==null){
-                    manuals[i]=manual;
-                    return;
-                }
-            }
+        if(manuals==null)  manuals = new ArrayList<>();
+        if(!manuals.contains(manual)) {
+        	manuals.add(manual);	
         }
-        
-        //Ampliem el manual en una posicio
-        String[] newManuals = new String[manuals.length+1];
-        for(int i=0;i<manuals.length; i++)
-            newManuals[i]=manuals[i];
-        
-        newManuals[newManuals.length-1]=manual;
-        manuals=newManuals;
-        
+    }
+    public void printManuals() {
+    	for(int i=0;i<manuals.size();i++) {
+    		Logger.getInstance().debug(manuals.get(i));
+    	}
+    	
+    	for(String manual:manuals) {
+    		Logger.getInstance().debug(manual);
+    	}
+
+    	manuals.forEach(Logger.getInstance()::debug);
+
     }
     public void assegurarStock(int quantity){
         if(this.quantity<quantity){
@@ -167,9 +163,11 @@ public class Item {
     
     public static void main(String args[]){
         Item item = new Item();
-        item.setPrice(104);;
-        item.setPrice(10000);;
-        new Item(null,1);
+        item.addManual("M1");
+        item.addManual("M2");
+        item.addManual("M3");
+        
+        item.printManuals();
         
         
     }
