@@ -1,6 +1,8 @@
 package com.dj.magatzem.objectes;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 import com.dj.magatzem.objectes.utils.Logger;
 
@@ -101,6 +103,9 @@ public class Item {
     public ArrayList<String> getManuals() {
         return manuals;
     }
+    public String[] getManualsAsArray() {
+        return manuals.toArray(new String[0]);
+    }
 
     public void setManuals(ArrayList<String> manuals) {
         this.manuals = manuals;
@@ -135,6 +140,12 @@ public class Item {
         	manuals.add(manual);	
         }
     }
+    public void addManuals(ArrayList<String> manuals){
+    	this.manuals.addAll(manuals);
+    }
+    public void addManuals(String[] manuals){
+    	this.manuals.addAll(Arrays.asList(manuals));
+    }
     public void printManuals() {
     	for(int i=0;i<manuals.size();i++) {
     		Logger.getInstance().debug(manuals.get(i));
@@ -160,7 +171,15 @@ public class Item {
     public float getStockValue(){
         return (float)price*quantity;
     }
-    
+
+    public String binarySearchManual(String manual) {
+        Collections.sort(manuals);
+        int index=Collections.binarySearch(manuals, manual);
+        if(index>0) {
+        	return manuals.get(index);	
+        }
+        return "";
+    }
     public static void main(String args[]){
         Item item = new Item();
         item.addManual("M1");
@@ -169,6 +188,8 @@ public class Item {
         
         item.printManuals();
         
+        System.out.println(item.binarySearchManual("M9"));
+        System.out.println(item.binarySearchManual("M2"));
         
     }
 }
