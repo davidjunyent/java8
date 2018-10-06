@@ -6,7 +6,7 @@ import java.util.Collections;
 
 import com.dj.magatzem.objectes.utils.Logger;
 
-public class Item {
+public abstract class Item {
 
     private String name;
     private double price;
@@ -17,7 +17,7 @@ public class Item {
     
     private Proveidor proveidor;
     
-    private Item(){ }
+   /** private Item(){ }
 
     public static Item createItem(String name) {
     	if(name==null ||  name.isEmpty()) {
@@ -43,22 +43,22 @@ public class Item {
     	item.price=price;
     	item.location=location;
     	return item;
-    }
-    private Item(String name) {
+    } **/
+    protected Item(String name) {
     	this.name=name;
     }
     
-    private Item(String name, int quantity){
+    protected Item(String name, int quantity){
     	this(name);
         this.quantity=quantity;
     }
 
-    private Item(String name, double price) {
+    protected Item(String name, double price) {
     	this(name);
         this.price = price;
     }
 
-    private Item(String name, double price, int quantity, Estanteria location) {
+    protected Item(String name, double price, int quantity, Estanteria location) {
         this(name, price);
         this.quantity = quantity;
         this.location = location;
@@ -165,7 +165,12 @@ public class Item {
     }
     @Override
     public String toString(){
-        return quantity+" "+name+" 's";
+    	StringBuilder result= new StringBuilder("");
+    	result.append(quantity)
+    		.append(" ")
+    		.append(name)
+    		.append("'s");
+        return result.toString();
     }
     
     public float getStockValue(){
@@ -180,16 +185,11 @@ public class Item {
         }
         return "";
     }
-    public static void main(String args[]){
-        Item item = new Item();
-        item.addManual("M1");
-        item.addManual("M2");
-        item.addManual("M3");
-        
-        item.printManuals();
-        
-        System.out.println(item.binarySearchManual("M9"));
-        System.out.println(item.binarySearchManual("M2"));
-        
+    
+    protected abstract Item getItemRelacionat();
+    
+    public double getDiscount() {
+    	return 0;
     }
+
 }

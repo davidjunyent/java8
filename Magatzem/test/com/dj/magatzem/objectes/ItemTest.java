@@ -42,7 +42,7 @@ public class ItemTest {
     @Test
     public void testIsOutOfStock() {
         Logger.getInstance().debug("isOutOfStock");
-        Item instance = Item.createItem("Item 1",1);
+        Item instance = new Eina("Item 1",1);
         boolean expResult = false;
         boolean result = instance.isOutOfStock();
         assertEquals(expResult, result);
@@ -64,7 +64,7 @@ public class ItemTest {
     @Test
     public void testGetNumberOfManuals() {
         Logger.getInstance().debug("getNumberOfManuals");
-        Item instance = Item.createItem("Item 1",1);
+        Item instance = new Eina("Item 1",1);
         
         instance.setManuals(new ArrayList<>());
         instance.getManuals().add("M1");
@@ -96,9 +96,9 @@ public class ItemTest {
     
     @Test
     public void testAddManual() {
-       Logger.getInstance().debug("addManual");
+        Logger.getInstance().debug("addManual");
         String manual = "Manual!";
-        Item instance = Item.createItem("Item 1",1);
+        Item instance = new Eina("Item 1",1);
         
         instance.addManual(manual);
         assertNotNull(instance.getManuals().get(0));
@@ -123,6 +123,31 @@ public class ItemTest {
         if(!found){
             fail("ManualTestToAdd not found");
         }
+    }
+    @Test
+    public void testToString() {
+    	Logger.getInstance().debug("testToString");
+        
+    	Object[] items= {new Eina("Cargols",4),new Eina("Martell",1)};
+        
+        for(Object item:items) {
+        	System.out.println(item.toString());
+        }
+        
+        assertEquals(0,0);
+    }
+    @SuppressWarnings("unused")
+	@Test
+    public void testItemRelacionat() {
+    	Item item1=new Eina("Cargols",4);
+    	Item item2=new Eina("Martell",1,2,2);
+    	Eina eina=new Eina("Martell 2",1,2,2);
+    	
+    	Item ref1=item1.getItemRelacionat();
+    	Item ref2=item2.getItemRelacionat();
+    	Eina ref3=eina.getItemRelacionat();
+    	
+    	assertEquals(1,1);
     }
     
 }

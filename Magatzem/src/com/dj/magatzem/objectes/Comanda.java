@@ -1,5 +1,6 @@
 package com.dj.magatzem.objectes;
 
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -30,23 +31,35 @@ public class Comanda {
 		creada= LocalDateTime.now();
 		prevista=creada.plusDays(DIES_ENTREGA_PER_DEFECTE).toLocalDate();
 		id=++nextId;
+		DecimalFormat df = new DecimalFormat("##0.00");
+		StringBuilder result=new StringBuilder();
+		double preuTotal=0.0;
+		for(Item item:items) {
+			double pvp=item.getPrice()-(item.getPrice()*(item.getDiscount()/100));
+			preuTotal+=pvp;
+			result.append("\n").append(item).append(",").append("PVP amb dte: ").append(df.format(pvp));
+			
+		}
+		
+		result.append("\n").append("PVP total: "+df.format(preuTotal));
+		Logger.getInstance().debug("Resum comanda: "+result);
 	}
 	
-	public void comandaPreparada() {
+	public void prepara() {
 		estat=ESTAT_PREPARADA;
 		preparada=LocalDateTime.now();
 		Logger.getInstance().debug("MAIL: La comanda "+id+" ha estat preparada a data "+preparada.format(DEFAULT_FORMATTER)); 
 
 	}
 	
-	public void comandaEnviada() {
+	public void envia() {
 		estat=ESTAT_ENVIADA;
 		enviada=LocalDateTime.now();
 		Logger.getInstance().debug("MAIL: La comanda "+id+" ha estat enviada a data "+enviada.format(DEFAULT_FORMATTER)); 
 
 	}
 	
-	public void comandaEntregada() {
+	public void entrega() {
 		estat=ESTAT_ENTREGADA;
 		entregada=LocalDateTime.now();
 		if(prevista.compareTo(entregada.toLocalDate())<0) {

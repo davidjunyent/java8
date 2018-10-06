@@ -58,9 +58,9 @@ public class EstanteriaTest {
         Estanteria instance = new Estanteria("1","2");
         
         instance.setItems(new Item[]{
-            Item.createItem("A",1),
-            Item.createItem("B",1),
-            Item.createItem("C",1)});
+            new Eina("A",1),
+            new Eina("B",1),
+            new Eina("C",1)});
         
                 
         String expResult = "A, B, C";
@@ -69,14 +69,14 @@ public class EstanteriaTest {
         // TODO review the generated test code and remove the default call to fail.
         
         instance.addItems(
-            Item.createItem("A",1),
-            Item.createItem("B",1),
-            Item.createItem("C",1));
+            new Eina("A",1),
+            new Eina("B",1),
+            new Eina("C",1));
         
         instance.addItems(new Item[]{
-            Item.createItem("A",1),
-            Item.createItem("B",1),
-            Item.createItem("C",1)});
+            new Eina("A",1),
+            new Eina("B",1),
+            new Eina("C",1)});
         
         Logger.getInstance().debug("Num. Objectes Estanteries: "+Estanteria.NUM_ESTANTERIES);
     }    

@@ -44,7 +44,7 @@ public class ProveidorTest {
     @Test
     public void testDemanaItem() {
         Logger.getInstance().debug("demanaItem");
-        Item item = Item.createItem("Tornillos", 6);
+        Item item = new Eina("Tornillos", 6);
         Proveidor instance = new Proveidor("David Junyent", "d.junyent@gmail.com");
         instance.demanaItem(item);        
         
