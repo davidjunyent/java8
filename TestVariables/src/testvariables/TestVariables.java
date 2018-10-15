@@ -1,8 +1,6 @@
 package testvariables;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
+import java.math.BigDecimal;
 
 
 public class TestVariables {
@@ -24,7 +22,7 @@ public class TestVariables {
     public static void main(String[] args) {
 
 
-        System.out.println(new Date());
+       /* System.out.println(new Date());
         
         LocalDate localDate = LocalDate.now();
         System.out.println(localDate);
@@ -39,7 +37,23 @@ public class TestVariables {
         	for (int k=0;k<playersScores[j].length;k++) {
         		playersScores[j][k]=(int)(Math.random()*10);
         	}
-        }
+        }*/
+
+        Double a = 0.02;
+        Double b = 0.03;
+        double c = b - a;
+        
+        System.out.println(b);
+        
+        System.out.println(c);
+
+        BigDecimal bigA = new BigDecimal(a);
+        BigDecimal bigB = new BigDecimal(b);
+        
+        c= bigB.subtract(bigA).doubleValue();
+               
+        System.out.println(c);
+
         
         
     }

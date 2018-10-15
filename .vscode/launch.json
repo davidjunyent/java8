@@ -1,0 +1,26 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - InfusionsMaker",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "InfusionsMaker",
+            "args": "",
+            "projectName": "TemplatePattern"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Magatzem",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "com.dj.magatzem.Magatzem",
+            "args": "",
+            "projectName": "Magatzem"
+        }
+    ]
+}
