@@ -43,15 +43,13 @@ public class TestVariables {
         Double b = 0.03;
         double c = b - a;
         
-        System.out.println(b);
-        
         System.out.println(c);
 
-        BigDecimal bigA = new BigDecimal(a);
-        BigDecimal bigB = new BigDecimal(b);
+        BigDecimal bigA = BigDecimal.valueOf(a);
+        BigDecimal bigB = BigDecimal.valueOf(b);
         
         c= bigB.subtract(bigA).doubleValue();
-               
+        
         System.out.println(c);
 
         

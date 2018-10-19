@@ -6,7 +6,7 @@ import java.util.Collections;
 
 import com.dj.magatzem.objectes.utils.Logger;
 
-public abstract class Item {
+public abstract class Item implements Comparable<Item>{
 
     private String name;
     private double price;
@@ -191,5 +191,12 @@ public abstract class Item {
     public double getDiscount() {
     	return 0;
     }
+
+	@Override
+	public int compareTo(Item o) {
+		int result= getName().compareTo(o.getName());
+		if(result!=0) return result;
+		return new Double(getPrice()).compareTo(new Double(o.getPrice()));
+	}
 
 }

@@ -5,6 +5,9 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 import com.dj.magatzem.objectes.utils.Logger;
 
@@ -18,7 +21,7 @@ public class Comanda {
 	private static int nextId; 
 	private final int id;
 	private int estat;
-	private ArrayList<Item> items;
+	private List<Item> items;
 	private LocalDateTime creada;
 	private LocalDateTime preparada;
 	private LocalDateTime enviada;
@@ -93,12 +96,36 @@ public class Comanda {
 		return estat;
 	}
 
-	public ArrayList<Item> getItems() {
+	public List<Item> getItems() {
 		return items;
 	}
-
+	public List<Item> getOrderedItemsByPrice() {
+		
+		List<Item> result = new ArrayList<>(getItems());
+		Comparator<Item> comparator=new ItemComparatorByPrice();
+		
+		Collections.sort(result,comparator);
+		
+		return result;
+	}
+	public List<Item> getOrderedItemsDefault() {
+		List<Item> result = new ArrayList<>(getItems());
+		Collections.sort(result);
+		return result;
+		
+	}
 	public int getId() {
 		return id;
 	}
-
 }
+class ItemComparatorByPrice implements Comparator<Item>{
+
+	@Override
+	public int compare(Item o1, Item o2) {
+		if(o1.getPrice()>o2.getPrice()) return -1;
+		if(o1.getPrice()<o2.getPrice()) return 1;
+		return 0;
+	}
+	
+}
+
