@@ -56,8 +56,16 @@ class ComandaTest {
 		comanda.prepara();
 		comanda.envia();
 		comanda.entrega();
-		
-		
+	}
+	
+	@Test
+	void getItemsInStock() {
+		Logger.getInstance().error("Test getItemsInStock");
+		ArrayList<Item> items = new ArrayList<>();
+    	items.add(new Eina("Material Ferro 10",90.75,1,1));
+    	
+    	Comanda comanda=new Comanda(items);
+    	comanda.getItemsInStock();
     	
 	}
 }

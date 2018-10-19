@@ -1,3 +1,5 @@
+import java.util.function.Consumer;
+
 import pizzadecoratorexample.Margarita;
 import pizzadecoratorexample.Pizza;
 import pizzadecoratorexample.QuatreEstacions;
@@ -17,22 +19,34 @@ public class PizzaDecoratorExample {
 		};
 		
 		if(Math.random()>0.6) {
-			System.out.println("UE UE UE! totes les pizzes a meitat de preu!!!");
+			System.out.println("UE UE UE! totes les pizzes a meitat de preu!!!\n");
 			
 			for(int i=0;i<comanda.length;i++) 
 				comanda[i]=new MeitatPreuPizzaDecorator(comanda[i]);
 		}
 		
 		
+		System.out.println("Procesant comanda...\n");
 		double totalcost=0;
 		for(Pizza pizza:comanda) {
-			System.out.println("Fent una pizza... ");
-			for(String ingredient:pizza.getIngredients()) {
-				System.out.print(ingredient+";");
-			}
+			//with funcional interface
+			//pizza.getIngredients().forEach(new IngredientsConsumer());
+			//with lambda expression
+			pizza.getIngredients().forEach(ingredient -> System.out.print(ingredient+";"));
+			
 			System.out.println("Cost: "+pizza.getCost());
 			totalcost=totalcost+pizza.getCost();
 		}
-		System.out.println("Total comanda: "+totalcost);
+		System.out.println("\nTotal comanda: "+totalcost);
 	}
+	
+}
+class IngredientsConsumer implements Consumer<String>{
+
+	@Override
+	public void accept(String ingredient) {
+		System.out.print(ingredient+";");
+		
+	}
+	
 }

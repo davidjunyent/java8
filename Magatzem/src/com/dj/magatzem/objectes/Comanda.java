@@ -99,6 +99,7 @@ public class Comanda {
 	public List<Item> getItems() {
 		return items;
 	}
+	
 	public List<Item> getOrderedItemsByPrice() {
 		
 		List<Item> result = new ArrayList<>(getItems());
@@ -114,6 +115,45 @@ public class Comanda {
 		return result;
 		
 	}
+	
+	public List<Item> getOrderedItemsByQuantity() {
+		/*Un altre lamda*/
+		List<Item> result = new ArrayList<>(getItems());
+		result.sort((o1,o2) -> o1.getQuantity()-o2.getQuantity() );
+		return result;
+	}
+	
+	public List<Item> getItemsRelacioants() {
+		List<Item> relacionats = new ArrayList<>(items);
+		/*
+		 * Amb bucle
+		for(Item item:items) {
+			relacionats.add(item.getItemRelacionat());
+		}
+		return relacionats;
+		*/
+		
+		/*Amb interficie
+		 * *relacionats.replaceAll(new UnaryOperator<Item>() {
+			@Override
+			public Item apply(Item item) {
+				return i.getItemRelacionat();
+			}
+		});
+		*/
+		/**
+		 * Amb lambda!
+		 */
+		relacionats.replaceAll(item -> item.getItemRelacionat());
+		return relacionats;
+	}
+	
+	public List<Item> getItemsInStock() {		
+		List<Item> itemsInStock = new ArrayList<>(items);
+		itemsInStock.removeIf(item-> item.getQuantity()>0);
+		return itemsInStock;
+	}
+	
 	public int getId() {
 		return id;
 	}
