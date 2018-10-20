@@ -5,16 +5,13 @@ public class ContactsImmutable {
 	
 	public static void main(String... args) {
 		
-		Contact.Builder builder = new Contact.Builder();
+		Contact.Builder contcatBuilder = new Contact.Builder();
 		
-		builder.setName("David");
-		builder.setLastName("Junyent");
-		builder.setZipCode("0000");
-		builder.setStreet("\"C\\\\..sdaf\"");;
-		builder.setNumber("no 5");
-		builder.AddPhoneNumbers("999 000 999");
+		contcatBuilder.name("David").lastName("Junyent");
+		contcatBuilder.zipCode("0000").street("\"C\\\\..sdaf\"").number("no 5");
+		contcatBuilder.AddPhone("999 000 999");
 		
-		Contact contact = builder.build();
+		Contact contact = contcatBuilder.build();
 
 		
 		System.out.println(contact);

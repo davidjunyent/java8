@@ -36,28 +36,34 @@ public final class Contact {
 			return new Contact(name, lastName, new Address(zipCode, street, number), phoneNumbers);
 		}
 
-		public void setName(String name) {
+		public Builder name(String name) {
 			this.name = name;
+			return this;
 		}
 
-		public void setLastName(String lastName) {
+		public Builder lastName(String lastName) {
 			this.lastName = lastName;
+			return this;
 		}
 
-		public void setZipCode(String zipCode) {
+		public Builder zipCode(String zipCode) {
 			this.zipCode = zipCode;
+			return this;
 		}
 
-		public void setStreet(String street) {
+		public Builder street(String street) {
 			this.street = street;
+			return this;
 		}
 
-		public void setNumber(String number) {
+		public Builder number(String number) {
 			this.number = number;
+			return this;
 		}
 
-		public void AddPhoneNumbers(String phoneNumber) {
-			this.phoneNumbers.add(phoneNumber);
+		public Builder AddPhone(String phone) {
+			this.phoneNumbers.add(phone);
+			return this;
 		}
 
 	}
