@@ -1,16 +1,21 @@
 package contactsimmutable;
 
-import java.util.Arrays;
 
 public class ContactsImmutable {
 	
 	public static void main(String... args) {
-		Contact contact = new Contact("David", "Junyent", new Address("0000", "C\\..sdaf", "no 5"),
-				Arrays.asList("999 213232", "992 93293"));
-
-		contact.getAddress().setStreet("blablabla");
 		
-		contact.getPhoneNumbers().set(0, "999 123 ·4");
+		Contact.Builder builder = new Contact.Builder();
+		
+		builder.setName("David");
+		builder.setLastName("Junyent");
+		builder.setZipCode("0000");
+		builder.setStreet("\"C\\\\..sdaf\"");;
+		builder.setNumber("no 5");
+		builder.AddPhoneNumbers("999 000 999");
+		
+		Contact contact = builder.build();
+
 		
 		System.out.println(contact);
 	}

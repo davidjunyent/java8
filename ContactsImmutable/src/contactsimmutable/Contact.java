@@ -10,11 +10,56 @@ public final class Contact {
 	private final Address address;
 	private final List<String> phoneNumbers;
 
-	public Contact(String name, String lastName, Address address, List<String> phoneNumbers) {
+	private Contact(String name, String lastName, Address address, List<String> phoneNumbers) {
 		this.name = name;
 		this.lastName = lastName;
 		this.address = address.clone();
 		this.phoneNumbers = new ArrayList<>(phoneNumbers);
+	}
+
+	public static class Builder {
+		private String name;
+		private String lastName;
+		private String zipCode;
+		private String street;
+		private String number;
+		private List<String> phoneNumbers = new ArrayList<>();
+
+		public Builder() {
+
+		}
+
+		public Contact build() {
+			if(name==null || name.isEmpty()) {
+				throw new IllegalArgumentException("Name must not be empty");
+			}
+			return new Contact(name, lastName, new Address(zipCode, street, number), phoneNumbers);
+		}
+
+		public void setName(String name) {
+			this.name = name;
+		}
+
+		public void setLastName(String lastName) {
+			this.lastName = lastName;
+		}
+
+		public void setZipCode(String zipCode) {
+			this.zipCode = zipCode;
+		}
+
+		public void setStreet(String street) {
+			this.street = street;
+		}
+
+		public void setNumber(String number) {
+			this.number = number;
+		}
+
+		public void AddPhoneNumbers(String phoneNumber) {
+			this.phoneNumbers.add(phoneNumber);
+		}
+
 	}
 
 	public String getName() {
@@ -84,6 +129,4 @@ public final class Contact {
 		return true;
 	}
 
-
-	
 }
