@@ -67,7 +67,6 @@ public class Matrix implements Iterable<Double> {
 				return true;
 
 			}
-			;
 			if (row < Matrix.this.matrix.length - 1) {
 				row++;
 				col = 0;
@@ -85,6 +84,7 @@ public class Matrix implements Iterable<Double> {
 
 	@Override
 	public Iterator<Double> iterator() {
+		@SuppressWarnings("unused")
 		class MatrixColIterator implements Iterator<Double> {
 
 			int row = -1, col = 0;
