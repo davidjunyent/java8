@@ -9,7 +9,7 @@ import tickets.TicketStatus;
 
 public class MockTicketService implements TicketService {
 
-    private static final int NUMBER_OF_TICKETS=100;
+    private static final int NUMBER_OF_TICKETS=10;
     private int ticketNum=0;
     @Override
     public Ticket getNextTicket() {
@@ -31,7 +31,7 @@ public class MockTicketService implements TicketService {
 
     @Override
     public boolean hasMoreTickets() {
-	if(ticketNum<=NUMBER_OF_TICKETS) {
+	if(ticketNum<NUMBER_OF_TICKETS) {
 	    return true;    
 	}
 	return false;
