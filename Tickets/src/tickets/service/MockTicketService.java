@@ -17,7 +17,7 @@ public class MockTicketService implements TicketService {
 	private Ticket getNextTicket() {
 		ticketNum++;
 
-		Ticket ticket = new Ticket("T" + toString(),
+		Ticket ticket = new Ticket("T" + ticketNum,
 				"Ticket " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yy hh:mm:ss")));
 		TicketStatus[] status = TicketStatus.values();
 
@@ -48,5 +48,4 @@ public class MockTicketService implements TicketService {
 		return this::getNextTicket;
 		
 	}
-
 }

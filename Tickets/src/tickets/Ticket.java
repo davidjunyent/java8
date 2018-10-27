@@ -16,6 +16,10 @@ public class Ticket {
 		this.status = TicketStatus.OPEN;
 		this.priority=Priority.MEDIUM;
 	}
+	
+	public static boolean isTicketClosed(Ticket ticket) {
+		return ticket.getStatus()==TicketStatus.CLOSED;
+	}
 
 	public String getSummary() {
 		return summary;
