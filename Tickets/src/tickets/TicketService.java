@@ -1,7 +1,9 @@
 package tickets;
 
+import java.util.function.Supplier;
+
 public interface TicketService {
-    Ticket getNextTicket();
     void storeTicket(Ticket ticket);
     boolean hasMoreTickets();
+    Supplier<Ticket> getTicketSupplier();
 }
