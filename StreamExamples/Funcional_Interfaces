@@ -1,0 +1,14 @@
+ Funcional Interfaces
+ ----------------------------------------------------
+   
+ Consumer<T> void function (T t)
+  
+ Predicate<T> boolean function (T t)
+  
+ Funcion<T,R> R function(T t) 
+  
+ BiFunction<T,R,U> R function (T t, U u)
+  
+ UnaiOperator<T> T function (T t)
+	  
+	 
