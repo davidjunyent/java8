@@ -5,7 +5,7 @@ import java.util.stream.Stream;
 public class Stream11 {
 	
 	/**
-	 * Treu tots els caracters dels elements que en tinguin mes 4 caracters
+	 * Treu els 3 primers caracters dels elements que en tinguin mes 4 caracters
 	 */
 	
 	public static void main (String args[]) {
@@ -14,10 +14,11 @@ public class Stream11 {
 		stream
 		.filter(paraula -> paraula.length() > 4)
 		.flatMap(paraula -> Arrays.stream(paraula.split("")))
-				.forEach(System.out::println);;
+		.limit(3)
+		.forEach(System.out::println);;
 				
 	    /**
-	     // Function of FlatMap
+	     // Function of flatMap
 	     
 		Function<String, Stream<String>> function = new Function<String, Stream<String>>() {
 			@Override

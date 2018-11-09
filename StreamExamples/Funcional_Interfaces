@@ -1,5 +1,6 @@
  Funcional Interfaces
  ----------------------------------------------------
+ https://docs.oracle.com/javase/8/docs/api/java/util/function/package-summary.html
    
  Consumer<T> void function (T t)
   
@@ -10,5 +11,7 @@
  BiFunction<T,R,U> R function (T t, U u)
   
  UnaiOperator<T> T function (T t)
+ 
+ BinaryOperator<T> T function (T t1, T t2)
 	  
 	 
