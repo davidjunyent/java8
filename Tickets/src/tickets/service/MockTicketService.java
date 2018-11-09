@@ -17,7 +17,7 @@ public class MockTicketService implements TicketService {
 	private Ticket getNextTicket() {
 		ticketNum++;
 
-		Ticket ticket = new Ticket("T" + ticketNum,
+		Ticket ticket = new Ticket("Tabi" + ticketNum,
 				"Ticket " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yy hh:mm:ss")));
 		TicketStatus[] status = TicketStatus.values();
 

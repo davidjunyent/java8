@@ -29,7 +29,6 @@ public class MainUsingStreams {
 			 .filter(ticket -> ticket.getText().contains("2"))
 			 .map(tk -> tk.getSummary())
 			 .forEach(System.out::println);
- 
 
 	}
 }
