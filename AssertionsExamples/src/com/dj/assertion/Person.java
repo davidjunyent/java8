@@ -18,7 +18,7 @@ public class Person {
 	}
 
 	public void setName(String name) {
-		assert name != null : "Name is could not be null";
+		assert name != null : "Name is can not be null";
 		if (name.isEmpty()) {
 			throw new IllegalArgumentException("Name is not valid");
 		}
