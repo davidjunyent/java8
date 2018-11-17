@@ -1,4 +1,4 @@
-package com.dj.frases;
+package com.dj.frases.io;
 
 import java.io.BufferedReader;
 import java.io.IOException;

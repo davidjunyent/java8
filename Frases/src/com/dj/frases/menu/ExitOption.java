@@ -1,4 +1,6 @@
-package com.dj.frases;
+package com.dj.frases.menu;
+
+import com.dj.frases.io.InputOuput;
 
 public class ExitOption implements MenuOption {
 

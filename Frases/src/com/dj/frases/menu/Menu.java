@@ -1,7 +1,9 @@
-package com.dj.frases;
+package com.dj.frases.menu;
 
 import java.util.Arrays;
 import java.util.List;
+
+import com.dj.frases.io.InputOuput;
 public class Menu {
 	
 	private String menuTitle; 
