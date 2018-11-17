@@ -4,7 +4,7 @@ import com.dj.frases.data.FrasesPersistence;
 import com.dj.frases.io.InputOuput;
 import com.dj.frases.model.Frase;
 
-public class ShowReadedOption implements MenuOption {
+public class ShowReadedOption implements Option {
 
 	private FrasesPersistence frasesPersistence;
 	
@@ -19,7 +19,7 @@ public class ShowReadedOption implements MenuOption {
 
 	@Override
 	public void execute() {
-		InputOuput.getInstance().writeLine("Frases guardades");
+		InputOuput.getInstance().writeLine("\nFrases guardades:\n");
 		frasesPersistence.getAllFrases().stream()
 									.map(Frase::toString)
 									.forEach(InputOuput.getInstance()::writeLine);

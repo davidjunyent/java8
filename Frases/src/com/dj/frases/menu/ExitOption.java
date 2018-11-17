@@ -2,7 +2,7 @@ package com.dj.frases.menu;
 
 import com.dj.frases.io.InputOuput;
 
-public class ExitOption implements MenuOption {
+public class ExitOption implements Option {
 
 	@Override
 	public String getOptionLabel() {

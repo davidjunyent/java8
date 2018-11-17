@@ -1,6 +1,6 @@
 package com.dj.frases.menu;
 
-public interface MenuOption {
+public interface Option {
 
 	public String getOptionLabel();
 	public void execute();

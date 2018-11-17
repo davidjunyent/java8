@@ -12,7 +12,7 @@ import com.dj.frases.model.Frase;
 
 
 public class FileFrasePersistence implements FrasesPersistence{
-	private String fileName="prova.txt";
+	private String fileName="frases.txt";
 	@Override
 	public void saveFrase(Frase frase) {
 		try (FileWriter fileWriter = new FileWriter(new File(fileName),true)){
