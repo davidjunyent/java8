@@ -1,5 +1,7 @@
 package com.dj.frases.menu;
 
+import static com.dj.frases.l10n.ResourceBundleProvider.getLiteral;
+
 import com.dj.frases.data.FrasesPersistence;
 import com.dj.frases.io.InputOuput;
 import com.dj.frases.model.Frase;
@@ -14,12 +16,12 @@ public class ShowReadedOption implements Option {
 	
 	@Override
 	public String getOptionLabel() {
-		return "Veure frases guardades";
+		return getLiteral("veureFrases");
 	}
 
 	@Override
 	public void execute() {
-		InputOuput.getInstance().writeLine("\nFrases guardades:\n");
+		InputOuput.getInstance().writeLine("\n"+getLiteral("veureFrases")+"\n");
 		frasesPersistence.getAllFrases().stream()
 									.map(Frase::toString)
 									.forEach(InputOuput.getInstance()::writeLine);

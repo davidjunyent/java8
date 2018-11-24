@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import static com.dj.frases.l10n.ResourceBundleProvider.getLiteral;
 
 public class InputOuput {
 
@@ -42,7 +43,7 @@ public class InputOuput {
 		try {
 			option=Integer.valueOf(bufferedReader.readLine());
 		}catch (NumberFormatException numberFormatException) {
-			displayLine("Valor incorrecte, torni a intentar-ho:");
+			displayLine(getLiteral("valorIncorrecte"));
 			return readInt();
 		}catch (IOException ioException) {
 			ioException.printStackTrace();;
