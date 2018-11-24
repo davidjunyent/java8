@@ -1,6 +1,8 @@
 package com.dj.frases.menu;
 import static com.dj.frases.l10n.ResourceBundleProvider.getLiteral;
 
+import java.time.LocalDateTime;
+
 import com.dj.frases.data.FrasesPersistence;
 import com.dj.frases.io.InputOuput;
 import com.dj.frases.model.Frase;
@@ -20,7 +22,9 @@ public class WriteNewOption implements Option {
 	@Override
 	public void execute() {
 		InputOuput.getInstance().writeLine("\n"+getLiteral("novaFrase")+"\n");
-		frasesPersistence.saveFrase(new Frase(InputOuput.getInstance().readLine()));
+		Frase frase = new Frase(InputOuput.getInstance().readLine());
+		frase.setDataCreacio(LocalDateTime.now());
+		frasesPersistence.saveFrase(frase);
 	}
 
 }

@@ -13,8 +13,11 @@ public class Frase implements Serializable {
 
 	public Frase(String frase) {
 		this.frase = frase;
+		
 	}
-
+	public Frase() {
+		
+	}
 	public Integer getId() {
 		return id;
 	}
@@ -30,9 +33,14 @@ public class Frase implements Serializable {
 	public String getValorNoSerializable() {
 		return valorNoSerializable;
 	}
-
+	public void setFrase(String frase) {
+		this.frase = frase;
+	}
+	public void setDataCreacio(LocalDateTime dataCreacio) {
+		this.dataCreacio = dataCreacio;
+	}
 	@Override
 	public String toString() {
-		return getFrase();
-	}
+		return "Frase [frase=" + frase + ", dataCreacio=" + dataCreacio + "]";
+	}	
 }
